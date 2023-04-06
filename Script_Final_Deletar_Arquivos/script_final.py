@@ -106,12 +106,13 @@ def janelaLoading(janela_caminho):
     count = 0
       
     splash.overrideredirect(True)
-    splash.after(3000, janela_caminho.destroy())
+    splash.after(3000, lambda: (splash.destroy(), janela_final()))
 
     gif_Label = Label(splash, image="")
     gif_Label.place(x=200, y=220, width=100, height=100)
 
     animation(count, imageObject, gif_Label, splash)
+    janela_caminho.destroy()
     splash.mainloop()
 
 def animation(count, imgObject, gif, splash):
@@ -125,16 +126,30 @@ def animation(count, imgObject, gif, splash):
     if count == frames:
         count = 0
     showAnimation = splash.after(50, lambda: animation(count, imgObject, gif, splash))
+    
 
 def janela_final():
-    pass
+    janela_final = Tk()
+    janela_final.title("Programa Finalizado!")
+    janela_final.geometry("560x250")
+    height = 260
+    width = 560
+    x = (janela_final.winfo_screenwidth()//2)-(width//2)
+    y = (janela_final.winfo_screenheight()//2)-(height//2)
+    janela_final.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+
+    texto_orientacao01 = Label(janela_final, text="Arquivos Duplicados Deletados Com Sucesso!", font=("Arial", 15))
+    texto_orientacao01.place(x=100, y=50)
+
+    texto_orientacao02 = Label(janela_final, text="Você já pode fechar essa janela.", font=("Arial", 12))
+    texto_orientacao02.place(x=170, y=110)
+
+    janela_final.mainloop()
 
 def main():
-    # janelaLoading()
     janelaInicial()
 
 main()
 
 
-# (janelaLoading(), deletarArquivosDuplicados())
 
