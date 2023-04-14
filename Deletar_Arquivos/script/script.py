@@ -38,7 +38,7 @@ def selecionarPastaCaminho(caminho_selecionado):
     caminho = filedialog.askdirectory()
     atualizarCaminhoSelecionado(caminho, caminho_selecionado)
 
-def janelaInicial():
+def janelaInicial(janela_nao_arquivos):
     global imagem_de_fundo
     janela_inicial = Tk()
     janela_inicial.title("Deletar Arquivos Duplicados!")
@@ -69,7 +69,7 @@ def janelaInicial():
     texto_criador = Label(janela_inicial, text=" © Criado por Lucas Fontora Righi Fontes", bg='#1F41A9', fg='white')
     texto_criador.place(x=140, y=470)
 
-    
+    janela_nao_arquivos.destroy()
 
     janela_inicial.mainloop()
 
@@ -116,14 +116,14 @@ def janelaLoading(janela_caminho):
     y = (splash.winfo_screenheight()//2)-(height//2)
     splash.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
-    backgroundImage = PhotoImage(file="Background.png")
+    backgroundImage = PhotoImage(file="images\Background.png")
     bg_image = Label(
         splash,
         image=backgroundImage
     )
     bg_image.pack()
 
-    gifImage = "load.gif"
+    gifImage = "images\load.gif"
     openImage = Image.open(gifImage)
     frames = openImage.n_frames
     imageObject = [PhotoImage(file=gifImage, format=f"gif -index {i}") for i in range(frames)]
@@ -155,25 +155,51 @@ def animation(count, imgObject, gif, splash):
 def janela_final():
     janela_final = Tk()
     janela_final.title("Programa Finalizado!")
-    janela_final.geometry("560x250")
     janela_final.configure(background='#1F41A9')
-    height = 260
-    width = 560
+    height = 500
+    width = 500
 
     x = (janela_final.winfo_screenwidth()//2)-(width//2)
     y = (janela_final.winfo_screenheight()//2)-(height//2)
     janela_final.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
-    texto_orientacao01 = Label(janela_final, text="Arquivos Duplicados Deletados Com Sucesso!", font=("Arial", 15))
-    texto_orientacao01.place(x=100, y=50)
+    texto_orientacao01 = Label(janela_final, text="Arquivos Duplicados Deletados Com Sucesso!", font=("Arial", 15), bg='#1F41A9', fg='white')
+    texto_orientacao01.place(x=80, y=50)
 
-    texto_orientacao02 = Label(janela_final, text="Você já pode fechar essa janela.", font=("Arial", 12))
+    texto_orientacao02 = Label(janela_final, text="Você já pode fechar essa janela.", font=("Arial", 12), bg='#1F41A9', fg='white')
     texto_orientacao02.place(x=170, y=110)
 
     janela_final.mainloop()
 
+def janelaNaoEncontrouArquivos():
+    janela_nao_arquivos = Tk()
+    janela_nao_arquivos.title("Sem Arquivos!")
+    janela_nao_arquivos.configure(background='#1F41A9')
+    height = 500
+    width = 500
+
+    x = (janela_nao_arquivos.winfo_screenwidth()//2)-(width//2)
+    y = (janela_nao_arquivos.winfo_screenheight()//2)-(height//2)
+    janela_nao_arquivos.geometry('{}x{}+{}+{}'.format(width, height, x, y)) 
+
+    texto_orientacao01 = Label(janela_nao_arquivos, text="Arquivos Não Encontrados!", font=("Arial", 25), bg='#1F41A9', fg='white')
+    texto_orientacao01.place(x=60, y=30)
+
+    texto_orientacao02 = Label(janela_nao_arquivos, text="Nenhum arquivo duplicado foi encontrado!", font=("Arial", 12), bg='#1F41A9', fg='white')
+    texto_orientacao02.place(x=100, y=180)
+
+    texto_orientacao03 = Label(janela_nao_arquivos, text="Volte para a página inicial.", font=("Arial", 12), bg='#1F41A9', fg='white')
+    texto_orientacao03.place(x=150, y=220)
+
+    texto_botao_voltar = Button(janela_nao_arquivos, text="Página Inicial", font=("Arial", 15), bg='#1F41A9', fg='white', command=janelaInicial(janela_nao_arquivos))
+    texto_botao_voltar.place(x=190, y=300)
+
+    janela_nao_arquivos.mainloop()
+
+
 def main():
-    janelaInicial()
+    # janelaInicial()
+    janelaNaoEncontrouArquivos()
 
 main()
 
