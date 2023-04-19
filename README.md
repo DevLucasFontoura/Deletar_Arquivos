@@ -4,5 +4,6 @@
 
 
 Obs: Haverá autualizações.
-  - Painel na Web com login de usuário. 
-  - O  usuário poderá indicar o caminho da pasta que deseja limpar.
+  - Interface Gráfica. ✅
+  - O  usuário poderá indicar o caminho da pasta que deseja limpar. ✅
+  - Animação de Loading. ✅
