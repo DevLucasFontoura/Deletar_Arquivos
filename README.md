@@ -1,6 +1,6 @@
 ### Script Para Deletar Arquivos Duplicados.
 
-- Criei esse script com o intuito de limpar a pasta Dowloads do meu computador, pois não sou o único a usar ele, sendo assim todo mês eu utilizo ele para poder deletar arquivos duplicados.
+- Criei esse script com o intuito de limpar a pasta selecionda pelo usuário, sendo assim todo mês eu utilizo ele para poder deletar arquivos duplicados.
 
 
 Obs: Haverá autualizações.
