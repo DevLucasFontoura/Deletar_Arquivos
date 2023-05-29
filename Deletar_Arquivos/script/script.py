@@ -203,9 +203,11 @@ def janelaNaoEncontrouArquivos():
 
 
 def main():
-    janelaInicial()  
+    janelaInicial()
+    if selecionarPasta() == pastaVazia:
+        janelaNaoEncontrouArquivos()
+    else:
+        janelaLoading()
+    
 
 main()
-
-
-
