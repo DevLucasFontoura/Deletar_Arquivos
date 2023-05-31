@@ -1,9 +1,8 @@
 ### Script Para Deletar Arquivos Duplicados.
 
-- Criei esse script com o intuito de limpar a pasta selecionda pelo usuário, sendo assim todo mês eu utilizo ele para poder deletar arquivos duplicados.
+- Criei esse script com o objetivo de limpar a pasta selecionada pelo usuário. Uso-o mensalmente para remover arquivos duplicados
 
-
-Obs: Haverá autualizações.
+Atualizações até o momento.
   - Interface Gráfica. ✅
-  - O  usuário poderá indicar o caminho da pasta que deseja limpar. ✅
+  - O usuário poderá indicar o caminho da pasta que deseja limpar. ✅
   - Animação de Loading. ✅
