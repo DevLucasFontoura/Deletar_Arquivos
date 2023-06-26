@@ -97,7 +97,7 @@ def janelaCaminhoArquivo(janela_inicial):
     texto_orientacao03 = Label(janela_caminho, text="Clique no botão abaixo para executar o programa:", font=("Arial", 12), bg='#1F41A9', fg='white')
     texto_orientacao03.place(x=60, y=280)
 
-    botao_executar = Button(janela_caminho, text="Executar", font=("Arial", 15), bg='#1F41A9', fg='white', command=lambda: (janelaLoading(janela_caminho), deletarArquivosDuplicados()))
+    botao_executar = Button(janela_caminho, text="Executar", font=("Arial", 15), bg='#1F41A9', fg='white', command=lambda: (janelaLoading(janela_caminho)))
     botao_executar.place(x=200, y=330)
 
     caminho_selecionado_label = Label(janela_caminho, text="", font=("Arial", 12), bg='#1F41A9', fg='white')
@@ -128,7 +128,7 @@ def janelaLoading(janela_caminho):
     count = 0
       
     splash.overrideredirect(True)
-    splash.after(3000, lambda: (splash.destroy(), janelaFinal()))
+    splash.after(3000, lambda: (splash.destroy(), deletarArquivosDuplicados()))
 
     gif_Label = Label(splash, image="")
     gif_Label.place(x=200, y=220, width=100, height=100)
@@ -193,21 +193,27 @@ def janelaNaoEncontrouArquivos():
     texto_orientacao02 = Label(janela_nao_arquivos, text="Nenhum arquivo duplicado foi encontrado!", font=("Arial", 15), bg='#1F41A9', fg='white')
     texto_orientacao02.place(x=80, y=160)
 
-    texto_orientacao03 = Label(janela_nao_arquivos, text="Volte para a página inicial.", font=("Arial", 15), bg='#1F41A9', fg='white')
-    texto_orientacao03.place(x=130, y=220)
+    texto_orientacao03 = Label(janela_nao_arquivos, text="Este programa irá finalizar sozinho.", font=("Arial", 15), bg='#1F41A9', fg='white')
+    texto_orientacao03.place(x=80, y=230)
 
-    texto_botao_voltar = Button(janela_nao_arquivos, text="Página Inicial", font=("Arial", 15), bg='#1F41A9', fg='white') #command=janelaInicial(janela_nao_arquivos))
-    texto_botao_voltar.place(x=190, y=300)
+
+    janela_nao_arquivos.overrideredirect(True)
+    janela_nao_arquivos.after(5000, lambda: (janela_nao_arquivos.destroy()))
 
     janela_nao_arquivos.mainloop()
 
 
 def main():
     janelaInicial()
-    if selecionarPasta() == pastaVazia:
+    if caminho_arquivo == '':
         janelaNaoEncontrouArquivos()
+        print('NÃO FOI SELECIONADA UMA PASTA!')
+    elif pastaVazia(caminho_arquivo):
+        janelaNaoEncontrouArquivos()
+        print('NAO FORAM ENCONTRADOS ARQUIVOS DUPLICADOS!')
     else:
         janelaLoading()
-    
 
-main()
+if __name__ == "__main__":
+    main()
+
